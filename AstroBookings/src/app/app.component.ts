@@ -6,12 +6,13 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet],
   template: `
-    <h1>Welcome to {{title}}!</h1>
+    <h1>Welcome to {{ title }}!</h1>
+    <p>By Alberto Basalo</p>
 
     <router-outlet />
   `,
   styles: [],
 })
 export class AppComponent {
-  title = 'AstroBookings';
+  protected title = '🚀 Astro Bookings';
 }
