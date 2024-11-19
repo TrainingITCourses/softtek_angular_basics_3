@@ -2,7 +2,7 @@
 
 Curso de introducción a Angular moderno para Softtek. **Edición 3. Noviembre 24**
 
-> [Laboratorio de ejemplo](https://github.com/TrainingITCourses/softtek_angular_basics_3) del curso de [Angular Basics para Softtek nov 24](https://cursos.trainingit.es/course/view.php?id=1761) impartido por [Alberto Basalo](https://albertobasalo.dev) con TrainingIT.
+> [Laboratorio de ejemplo](https://github.com/TrainingITCourses/softtek_angular_basics_3) del curso de [Angular Basics para Softtek nov 24](https://cursos.trainingit.es/course/view.php?id=1768) impartido por [Alberto Basalo](https://albertobasalo.dev) con TrainingIT.
 
 > [!NOTE]
 > This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version _18.2.12._
