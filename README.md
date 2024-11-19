@@ -1,26 +1,39 @@
 # Softtek Angular Basics Edición 3
 
-Curso de introducción a Angular moderno para Softtek. Edición 3. Noviembre 24
+Curso de introducción a Angular moderno para Softtek. **Edición 3. Noviembre 24**
 
 > [Laboratorio de ejemplo](https://github.com/TrainingITCourses/softtek_angular_basics_3) del curso de [Angular Basics para Softtek nov 24](https://cursos.trainingit.es/course/view.php?id=1761) impartido por [Alberto Basalo](https://albertobasalo.dev) con TrainingIT.
 
 > [!NOTE]
-> This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version _18.2.8._
+> This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version _18.2.12._
 
 ## Requisitos para el laboratorio
 
-Comprobar [versión de Node.js](https://angular.dev/reference/versions#) y npm.
+Comprobar [versión de Node.js u npm](https://angular.dev/reference/versions#)
 
 ```bash
 # Check Node.js and npm versions
 node -v
 npm -v
-# Install Angular CLI
-npm i -g @angular/cli@latest
 ```
 
 > [!NOTE]
 > La aplicación de ejemplo estará en la carpeta [AstroBookings](./AstroBookings)
+
+## Replicar desde cero
+
+Instalar **Angular CLI** y generar aplicación de ejemplo.
+
+```bash
+# Install Angular CLI
+npm i -g @angular/cli@latest
+# Generate new Angular project
+ng new AstroBookings --inline-style --inline-template --prefix=lab --ssr=false --style=css
+# Alternative with shortcut aliases (- instead of --)
+ng new AstroBookings -s -t -p=lab --ssr=false --style=css
+# Alternative without global Angular CLI
+npx ng new AstroBookings -s -t -p=lab --ssr=false --style=css
+```
 
 ## Iniciar a partir del laboratorio
 
@@ -29,25 +42,25 @@ El código fuente de la aplicación de ejemplo se encuentra en el repositorio de
 ```bash
 # Clone lab from github
 git clone https://github.com/TrainingITCourses/softtek_angular_basics_3.git
-# Install and run
+# Install dependencies
 cd softtek_angular_basics_3/AstroBookings
 npm install
-# Start Angular server
-npm start
-# Run a fake API server
-[APIbun](https://github.com/AlbertoBasalo/api_bun)
 ```
 
-## Replicar desde cero
+## Iniciar servidor de desarrollo
 
-Instalar **Angular CLI** y generar aplicación de ejemplo.
+Ejecutar servidor de desarrollo de Angular.
 
 ```bash
-# Generate new Angular project
-ng new AstroBookings --inline-style --inline-template --prefix=lab --ssr --style=css
-# Or run with npx and options with aliases (- instead of --)
-npx ng new AstroBookings -s -t -p=lab --ssr --style=css
+# Start development server
+ng serve
+# Alternative with npm
+npm start
 ```
+
+### API REST de ejemplo
+
+- Instrucciones para servidor de ejemplo en [APIbun](https://github.com/AlbertoBasalo/api_bun)
 
 ---
 
