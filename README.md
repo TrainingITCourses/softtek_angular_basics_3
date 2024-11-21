@@ -6,6 +6,7 @@ Curso de introducción a Angular moderno para Softtek. **Edición 3. Noviembre 2
 
 > [!NOTE]
 > This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version _18.2.12._
+> Updated to Angular 19.0.0 (see below instructions)
 
 ## Requisitos para el laboratorio
 
@@ -62,6 +63,16 @@ npm start
 
 - Instrucciones para servidor de ejemplo en [APIbun](https://github.com/AlbertoBasalo/api_bun)
 
+## Actualizar a Angular 19
+
+```bash
+# Update global Angular CLI
+npm i -g @angular/cli@latest
+# Update project dependencies
+ng update
+# Update Angular CLI
+ng update @angular/cli
+# Accept all updates
 ---
 
 <footer>
@@ -73,8 +84,9 @@ npm start
   </p>
   <p>
     <a href="https://github.com/albertobasalo" target="blank">
-      <img 
+      <img
         src="https://img.shields.io/github/followers/albertobasalo?logo=github&label=profile albertobasalo&style=for-the-badge" alt="git albertobasalo" />
     </a>
   </p>
 </footer>
+```
