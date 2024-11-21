@@ -16,5 +16,5 @@ import { HeaderComponent } from '@layout/header/header.component';
   styles: [],
 })
 export class AppComponent {
-  protected title = '🚀 Astro Bookings';
+  title = '🚀 Astro Bookings';
 }

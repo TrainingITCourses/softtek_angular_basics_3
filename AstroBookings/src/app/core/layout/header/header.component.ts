@@ -3,7 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'lab-header',
   imports: [],
-  template: ` <header>Astro Bookings</header> `,
+  template: ` <header>{{ title }}</header> `,
   styles: ``,
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  protected title = '🚀 Astro Bookings';
+}

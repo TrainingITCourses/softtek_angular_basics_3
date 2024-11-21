@@ -5,9 +5,12 @@ import { Component } from '@angular/core';
   imports: [],
   template: `
     <footer>
-      <p>By Alberto Basalo V19</p>
+      <p>By {{ author }} {{ version }}</p>
     </footer>
   `,
   styles: ``,
 })
-export class FooterComponent {}
+export class FooterComponent {
+  protected author: string = '@AlbertoBasalo';
+  protected version: string = 'V19';
+}
