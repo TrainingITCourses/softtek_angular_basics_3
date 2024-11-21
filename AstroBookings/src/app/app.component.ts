@@ -1,16 +1,19 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { FooterComponent } from '@layout/footer/footer.component';
+import { HeaderComponent } from '@layout/header/header.component';
 
 @Component({
-    selector: 'lab-root',
-    imports: [RouterOutlet],
-    template: `
+  selector: 'lab-root',
+  imports: [RouterOutlet, HeaderComponent, FooterComponent],
+  template: `
+    <lab-header></lab-header>
     <h1>Welcome to {{ title }}!</h1>
-    <p>By Alberto Basalo</p>
+    <lab-footer></lab-footer>
 
     <router-outlet />
   `,
-    styles: []
+  styles: [],
 })
 export class AppComponent {
   protected title = '🚀 Astro Bookings';
