@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input, InputSignal } from '@angular/core';
+import { Author } from './author.type';
 
 @Component({
   selector: 'lab-footer',
@@ -6,7 +7,8 @@ import { Component } from '@angular/core';
   template: `
     <footer>
       <p>
-        By <a [href]="author.url" target="_blank">{{ author.name }}</a>
+        {{ appName() }} By
+        <a [href]="author.url" target="_blank">{{ author.name }}</a>
         {{ version }} ©️ {{ year }}
       </p>
       <p>
@@ -21,7 +23,13 @@ import { Component } from '@angular/core';
   styles: ``,
 })
 export class FooterComponent {
-  protected author = {
+  /**
+   * App name
+   * - It must be a `string`
+   */
+  public readonly appName: InputSignal<string> = input<string>('Initial value');
+
+  protected author: Author = {
     name: 'Alberto Basalo',
     url: 'https://albertobasalo.dev',
   };

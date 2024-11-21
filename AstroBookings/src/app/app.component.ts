@@ -7,14 +7,14 @@ import { HeaderComponent } from '@layout/header/header.component';
   selector: 'lab-root',
   imports: [RouterOutlet, HeaderComponent, FooterComponent],
   template: `
-    <lab-header></lab-header>
+    <lab-header [title]="title"></lab-header>
     <h1>Welcome to {{ title }}!</h1>
-    <lab-footer></lab-footer>
+    <lab-footer [appName]="title"></lab-footer>
 
     <router-outlet />
   `,
   styles: [],
 })
 export class AppComponent {
-  title = '🚀 Astro Bookings';
+  title = '🚀 Astro Bookings 🎟️';
 }
