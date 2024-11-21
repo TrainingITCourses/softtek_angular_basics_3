@@ -1,4 +1,10 @@
-import { Component, input, InputSignal } from '@angular/core';
+import {
+  Component,
+  input,
+  InputSignal,
+  signal,
+  WritableSignal,
+} from '@angular/core';
 import { Author } from './author.type';
 
 @Component({
@@ -12,7 +18,7 @@ import { Author } from './author.type';
         {{ version }} ©️ {{ year }}
       </p>
       <p>
-        @if(cookiesAccepted){
+        @if(cookiesAccepted()){
         <span>🍪 Cookies accepted</span>
         } @else{
         <button (click)="acceptCookies()">Accept cookies</button>
@@ -35,10 +41,10 @@ export class FooterComponent {
   };
   protected year: number = new Date().getFullYear();
   protected version: string = 'V19';
-  protected cookiesAccepted: boolean = false;
+  protected cookiesAccepted: WritableSignal<boolean> = signal<boolean>(false);
 
   protected acceptCookies() {
-    this.cookiesAccepted = true;
+    this.cookiesAccepted.set(true);
     console.log('Cookies accepted');
   }
 }
