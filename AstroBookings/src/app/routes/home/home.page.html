@@ -1,1 +1,11 @@
-<p>🏠 home works!</p>
+<h3>Next Space Travel launches</h3>
+<ul>
+  @for (launch of launches; track launch.id) {
+  <li>
+    <!-- A dynamic link -->
+    <a [routerLink]="['launches',launch.id]">
+      {{ launch.mission }} - {{ launch.date | date }}
+    </a>
+  </li>
+  }
+</ul>
