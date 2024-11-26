@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+/* Set padding to 1rem for all body elements */
+body {
+  padding: 1rem;
+}
+
+/* Set right margin to 1vw for all span elements */
+span {
+  margin-right: 1vw;
+}

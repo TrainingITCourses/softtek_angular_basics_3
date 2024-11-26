@@ -22,12 +22,19 @@ import { Author } from './author.type';
         @if(cookiesAccepted()){
         <span>🍪 Cookies accepted</span>
         } @else{
-        <button (click)="acceptCookies()">Accept cookies</button>
+        <button class="outline" (click)="acceptCookies()">
+          Accept cookies
+        </button>
         }
       </p>
     </footer>
   `,
-  styles: ``,
+  styles: `
+      footer {
+        position: fixed;
+        bottom: 0;
+      }
+  `,
 })
 export class FooterComponent {
   /**

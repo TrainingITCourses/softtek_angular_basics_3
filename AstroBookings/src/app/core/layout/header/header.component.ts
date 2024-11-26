@@ -9,13 +9,11 @@ import { RouterLink } from '@angular/router';
     <header>
       <nav>
         <ul>
-          {{
-            title() | uppercase
-          }}
+          <li>{{ title() | uppercase }}</li>
         </ul>
         <ul>
-          <a routerLink="/">🏠 Home</a>
-          <a routerLink="/about">ℹ️ About</a>
+          <li><a routerLink="/">🏠 Home</a></li>
+          <li><a routerLink="/about">ℹ️ About</a></li>
         </ul>
       </nav>
     </header>
