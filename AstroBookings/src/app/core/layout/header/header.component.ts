@@ -1,10 +1,25 @@
 import { UpperCasePipe } from '@angular/common';
 import { Component, input, InputSignal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'lab-header',
-  imports: [UpperCasePipe],
-  template: ` <header>{{ title() | uppercase }}</header> `,
+  imports: [UpperCasePipe, RouterLink],
+  template: `
+    <header>
+      <nav>
+        <ul>
+          {{
+            title() | uppercase
+          }}
+        </ul>
+        <ul>
+          <a routerLink="/">🏠 Home</a>
+          <a routerLink="/about">ℹ️ About</a>
+        </ul>
+      </nav>
+    </header>
+  `,
   styles: ``,
 })
 export class HeaderComponent {

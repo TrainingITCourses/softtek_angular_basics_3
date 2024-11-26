@@ -1,5 +1,6 @@
 import {
   Component,
+  computed,
   input,
   InputSignal,
   signal,
@@ -13,7 +14,7 @@ import { Author } from './author.type';
   template: `
     <footer>
       <p>
-        {{ appName() }} By
+        {{ footerTitle() }} By
         <a [href]="author.url" target="_blank">{{ author.name }}</a>
         {{ version }} ©️ {{ year }}
       </p>
@@ -41,10 +42,15 @@ export class FooterComponent {
   };
   protected year: number = new Date().getFullYear();
   protected version: string = 'V19';
+
   protected cookiesAccepted: WritableSignal<boolean> = signal<boolean>(false);
 
+  protected footerTitle = computed(() => this.appName().toUpperCase());
+
   protected acceptCookies() {
-    this.cookiesAccepted.set(true);
+    // this.cookiesAccepted.set(true);
+    this.cookiesAccepted.update((s) => !s);
+    //this.footerTitle.set('Cookies accepted');
     console.log('Cookies accepted');
   }
 }
