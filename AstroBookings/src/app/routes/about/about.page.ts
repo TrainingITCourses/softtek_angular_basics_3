@@ -2,41 +2,36 @@ import { Component } from '@angular/core';
 
 @Component({
   imports: [],
-  template: ` <p>ℹ️ about works!</p> `,
-  styles: `
-   <article>
-      <header>
-      <h2>
-        About Astro Bookings sample app
-        </h2>
-      </header>
-      <main>
-        <h3>
-          Tech stack
-        </h3>
-        <ul>
-          @for (tech of techStack; track tech.name) {
-            <li>
-              <a [href]="tech.url">{{ tech.name }}</a>
-            </li>
-          }
-        </ul>
-        <h3>
-          Features
-        </h3>
-        <ul>
-            @for (feature of features; track feature) {
-              <li>{{ feature }}</li>
-            }
-            </ul>
-          </main>
-      <footer>
-        <h3>Repository</h3>
-        <a href="https://github.com/albertobasalo/ng19-min-lab-astro-bookings" target="_blank">
-          https://github.com/albertobasalo/ng19-min-lab-astro-bookings
-        </a>
-      </footer>
-    </article>`,
+  template: ` <article>
+    <header>
+      <h2>About Astro Bookings sample app</h2>
+    </header>
+    <main>
+      <h3>Tech stack</h3>
+      <ul>
+        @for (tech of techStack; track tech.name) {
+        <li>
+          <a [href]="tech.url">{{ tech.name }}</a>
+        </li>
+        }
+      </ul>
+      <h3>Features</h3>
+      <ul>
+        @for (feature of features; track feature) {
+        <li>{{ feature }}</li>
+        }
+      </ul>
+    </main>
+    <footer>
+      <h3>Repository</h3>
+      <a
+        href="https://github.com/albertobasalo/ng19-min-lab-astro-bookings"
+        target="_blank"
+      >
+        https://github.com/albertobasalo/ng19-min-lab-astro-bookings
+      </a>
+    </footer>
+  </article>`,
 })
 export default class AboutPage {
   protected readonly features = [

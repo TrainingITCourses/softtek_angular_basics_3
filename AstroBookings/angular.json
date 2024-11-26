@@ -7,8 +7,11 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
+          "changeDetection": "OnPush",
           "inlineTemplate": true,
-          "inlineStyle": true
+          "inlineStyle": true,
+          "flat": true,
+          "skipTests": true
         }
       },
       "root": "",
