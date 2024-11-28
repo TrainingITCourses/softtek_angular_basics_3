@@ -13,3 +13,14 @@ export type LaunchDto = {
   pricePerSeat: number;
   status: LaunchStatus;
 };
+
+export const NULL_LAUNCH: LaunchDto = {
+  id: '',
+  agencyId: '',
+  rocketId: '',
+  date: new Date(1, 1, 1, 0, 0, 0, 0),
+  mission: 'Not found',
+  destination: '',
+  pricePerSeat: 0,
+  status: 'scheduled',
+};
