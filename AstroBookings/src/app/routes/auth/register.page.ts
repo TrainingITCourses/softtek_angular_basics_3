@@ -9,20 +9,29 @@ import { RouterLink } from '@angular/router';
     <form>
       <fieldset>
         <section>
-          <label>User name</label>
-          <input type="text" placeholder="User name" />
+          <label for="username">User name</label>
+          <input id="username" type="text" placeholder="User name" />
         </section>
         <section>
-          <label>Email</label>
-          <input type="email" placeholder="Email" />
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="Email" />
         </section>
         <section>
-          <label>Password</label>
-          <input type="password" placeholder="Password" />
+          <label for="password">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Password"
+          />
         </section>
         <section>
-          <label>Confirm Password</label>
-          <input type="password" placeholder="Confirm Password" />
+          <label for="confirmPassword">Confirm Password</label>
+          <input
+            id="confirmPassword"
+            type="password"
+            placeholder="Confirm Password"
+          />
         </section>
       </fieldset>
       <button type="submit">Register</button>
