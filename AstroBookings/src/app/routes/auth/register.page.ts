@@ -1,7 +1,11 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
+  effect,
+  Signal,
   signal,
+  viewChild,
   WritableSignal,
 } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
@@ -55,14 +59,26 @@ import { RouterLink } from '@angular/router';
             name="password"
             type="password"
             placeholder="Password"
+            [(ngModel)]="password"
+            #passwordModel="ngModel"
+            required
+            minlength="4"
+            [attr.aria-invalid]="modelInvalid(passwordModel)"
           />
+          @if(modelInvalid(passwordModel)){
+          <small>Password must be at least 4 characters long</small>
+          }
         </section>
         <section>
           <label for="confirmPassword">Confirm Password</label>
           <input
             id="confirmPassword"
+            name="confirmPassword"
             type="password"
             placeholder="Confirm Password"
+            [(ngModel)]="confirmPassword"
+            #confirmPasswordModel="ngModel"
+            [attr.aria-invalid]="modelInvalid(confirmPasswordModel)"
           />
         </section>
       </fieldset>
@@ -76,13 +92,39 @@ import { RouterLink } from '@angular/router';
 export default class RegisterPage {
   protected username: WritableSignal<string> = signal('');
   protected email: WritableSignal<string> = signal('');
+  protected password: WritableSignal<string> = signal('');
+  protected confirmPassword: WritableSignal<string> = signal('');
 
   protected modelInvalid(model: NgModel): boolean | undefined {
     if (!model.touched) return undefined;
     return model.invalid === true;
   }
 
+  protected confirmPasswordModel = viewChild<NgModel>('confirmPasswordModel');
+
+  private passwordsMatches: Signal<boolean> = computed(
+    () => this.password() === this.confirmPassword()
+  );
+
+  private passwordValidationEffect = effect(() => {
+    const model = this.confirmPasswordModel();
+    if (!model) return;
+    const control = model.control;
+    if (this.passwordsMatches()) {
+      control.setErrors(null);
+    } else {
+      control.setErrors({ passwordMismatch: true });
+    }
+  });
+
   protected register(): void {
-    console.log('Register: ' + this.username());
+    console.log(
+      'Register: ' +
+        this.username() +
+        ' - ' +
+        this.email() +
+        ' - ' +
+        this.password()
+    );
   }
 }
