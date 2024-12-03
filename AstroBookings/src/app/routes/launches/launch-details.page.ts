@@ -18,10 +18,7 @@ import { PageHeaderComponent } from '@app/shared/ui/page-header.component';
   imports: [DatePipe, CurrencyPipe, PageHeaderComponent],
   template: `
     <article>
-      <lab-page-header
-        [title]="launch().mission"
-        subtitle=" launch-details for: {{ id() }}"
-      />
+      <lab-page-header [title]="title()" [subtitle]="subtitle()" />
       <main>
         <p>
           <strong>Rocket:</strong> {{ rocket().name }} ({{ rocket().capacity }}
@@ -41,6 +38,14 @@ import { PageHeaderComponent } from '@app/shared/ui/page-header.component';
 })
 export default class LaunchDetailsPage {
   public readonly id: InputSignal<string> = input.required<string>();
+
+  protected readonly title: Signal<string> = computed(
+    () => '🚀 ' + this.launch().mission
+  );
+
+  protected readonly subtitle: Signal<string> = computed(
+    () => 'launch-details for: ' + this.id()
+  );
 
   protected readonly launch: Signal<LaunchDto> = computed(() => {
     return LAUNCHES.find((launch) => launch.id === this.id()) || NULL_LAUNCH;

@@ -1,12 +1,11 @@
-import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { LAUNCHES } from '@app/shared/data/launches.data';
 import { PageHeaderComponent } from '../../shared/ui/page-header.component';
+import { LaunchesListComponent } from './launches-list.component';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [DatePipe, RouterLink, PageHeaderComponent],
+  imports: [PageHeaderComponent, LaunchesListComponent],
   templateUrl: './home.page.html',
 })
 export class HomePage {
