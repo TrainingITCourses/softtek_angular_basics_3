@@ -1,11 +1,13 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   output,
   OutputEmitterRef,
 } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgModel } from '@angular/forms';
 import { LoginDto } from '@app/shared/models/login.dto';
+import { FormsService } from '@app/shared/services/forms.service';
 
 @Component({
   selector: 'lab-login-form',
@@ -42,9 +44,9 @@ import { LoginDto } from '@app/shared/models/login.dto';
             required
             minlength="4"
             aria-invalid="false"
-            [attr.aria-invalid]="passwordModel.invalid"
+            [attr.aria-invalid]="modelInvalid(passwordModel)"
           />
-          @if(passwordModel.invalid){
+          @if(modelInvalid(passwordModel)){
           <small>Password must be at least 4 characters long</small>
           }
         </section>
@@ -58,10 +60,15 @@ import { LoginDto } from '@app/shared/models/login.dto';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginForm {
+  private readonly formsService: FormsService = inject(FormsService);
   public readonly login: OutputEmitterRef<LoginDto> = output<LoginDto>();
 
   protected email: string = 'a@b.c';
   protected password: string = '';
+
+  protected modelInvalid(model: NgModel): boolean | undefined {
+    return this.formsService.modelInvalid(model);
+  }
 
   protected submit(): void {
     console.log('submit', this.email, this.password);

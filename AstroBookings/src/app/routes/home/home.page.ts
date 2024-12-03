@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { LAUNCHES } from '@app/shared/data/launches.data';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { LaunchesService } from '@app/shared/services/launches.service';
 import { PageHeaderComponent } from '../../shared/ui/page-header.component';
 import { LaunchesListComponent } from './launches-list.component';
 
@@ -9,6 +9,7 @@ import { LaunchesListComponent } from './launches-list.component';
   templateUrl: './home.page.html',
 })
 export class HomePage {
+  launchesService = inject(LaunchesService);
   protected readonly title: string = 'Upcoming Launches';
-  protected launches = LAUNCHES;
+  protected launches = this.launchesService.loadLaunches();
 }

@@ -6,6 +6,9 @@
     "AstroBookings": {
       "projectType": "application",
       "schematics": {
+        "@schematics/angular:service": {
+          "skipTests": true
+        },
         "@schematics/angular:component": {
           "changeDetection": "OnPush",
           "inlineTemplate": true,

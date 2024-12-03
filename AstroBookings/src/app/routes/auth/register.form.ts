@@ -3,6 +3,7 @@ import {
   Component,
   computed,
   effect,
+  inject,
   input,
   InputSignal,
   model,
@@ -16,6 +17,7 @@ import {
 } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
 import { RegisterDto } from '@app/shared/models/register.dto';
+import { FormsService } from '@app/shared/services/forms.service';
 
 @Component({
   selector: 'lab-register-form',
@@ -96,6 +98,7 @@ import { RegisterDto } from '@app/shared/models/register.dto';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterForm {
+  private readonly formsService: FormsService = inject(FormsService);
   public readonly submitCaption: InputSignal<string> = input('Register');
   public readonly register: OutputEmitterRef<RegisterDto> =
     output<RegisterDto>();
@@ -106,8 +109,7 @@ export class RegisterForm {
   protected confirmPassword: WritableSignal<string> = signal('');
 
   protected modelInvalid(model: NgModel): boolean | undefined {
-    if (!model.touched) return undefined;
-    return model.invalid === true;
+    return this.formsService.modelInvalid(model);
   }
 
   protected confirmPasswordModel = viewChild<NgModel>('confirmPasswordModel');
