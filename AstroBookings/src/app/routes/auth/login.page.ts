@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterLink, FormsModule],
+
   template: `
     <h2>🔐 Login</h2>
     <form #f="ngForm">

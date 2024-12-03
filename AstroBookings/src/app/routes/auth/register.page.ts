@@ -117,6 +117,10 @@ export default class RegisterPage {
     }
   });
 
+  private logPasswordMatchesEffect = effect(() => {
+    console.log('passwordsMatches', this.passwordsMatches());
+  });
+
   protected register(): void {
     console.log(
       'Register: ' +

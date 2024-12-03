@@ -8,3 +8,7 @@ body {
 span {
   margin-right: 1vw;
 }
+
+input.ng-invalid.ng-touched {
+  border: 5px solid red;
+}
