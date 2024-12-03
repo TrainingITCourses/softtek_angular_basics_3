@@ -1,11 +1,15 @@
-<h3>Next Space Travel launches</h3>
-<ul>
-  @for (launch of launches; track launch.id) {
-  <li>
-    <!-- A dynamic link -->
-    <a [routerLink]="['launches',launch.id]">
-      {{ launch.mission }} - {{ launch.date | date }}
-    </a>
-  </li>
-  }
-</ul>
+<article>
+  <lab-page-header [title]="title" subtitle="Choose your journey" />
+  <main>
+    <ul>
+      @for (launch of launches; track launch.id) {
+      <li>
+        <!-- A dynamic link -->
+        <a [routerLink]="['launches',launch.id]">
+          {{ launch.mission }} - {{ launch.date | date }}
+        </a>
+      </li>
+      }
+    </ul>
+  </main>
+</article>

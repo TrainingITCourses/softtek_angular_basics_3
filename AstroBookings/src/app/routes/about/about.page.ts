@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
+import { PageHeaderComponent } from '@app/shared/ui/page-header.component';
 
 @Component({
-  imports: [],
+  imports: [PageHeaderComponent],
   template: ` <article>
-    <header>
-      <h2>About Astro Bookings sample app</h2>
-    </header>
+    <lab-page-header title="About Astro Bookings" />
     <main>
       <h3>Tech stack</h3>
       <ul>

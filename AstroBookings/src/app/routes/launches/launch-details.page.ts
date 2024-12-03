@@ -11,19 +11,17 @@ import { LAUNCHES } from '@app/shared/data/launches.data';
 import { ROCKETS } from '@app/shared/data/rockets.data';
 import { LaunchDto, NULL_LAUNCH } from '@app/shared/models/launch.dto';
 import { NULL_ROCKET, RocketDto } from '@app/shared/models/rocket.dto';
+import { PageHeaderComponent } from '@app/shared/ui/page-header.component';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [DatePipe, CurrencyPipe],
+  imports: [DatePipe, CurrencyPipe, PageHeaderComponent],
   template: `
-    <p>
-      launch-details for: <b> {{ id() }} </b>
-    </p>
-
     <article>
-      <header>
-        <h2>🚀 {{ launch().mission }}</h2>
-      </header>
+      <lab-page-header
+        [title]="launch().mission"
+        subtitle=" launch-details for: {{ id() }}"
+      />
       <main>
         <p>
           <strong>Rocket:</strong> {{ rocket().name }} ({{ rocket().capacity }}
