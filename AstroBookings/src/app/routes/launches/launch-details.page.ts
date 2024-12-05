@@ -8,7 +8,8 @@ import {
   InputSignal,
   Signal,
 } from '@angular/core';
-import { LaunchDto } from '@app/shared/models/launch.dto';
+import { rxResource } from '@angular/core/rxjs-interop';
+import { LaunchDto, NULL_LAUNCH } from '@app/shared/models/launch.dto';
 import { NULL_ROCKET, RocketDto } from '@app/shared/models/rocket.dto';
 import { LaunchesService } from '@app/shared/services/launches.service';
 import { RocketsService } from '@app/shared/services/rockets.service';
@@ -26,9 +27,7 @@ import { PageHeaderComponent } from '@app/shared/ui/page-header.component';
           seats)
         </p>
         <p><strong>Destination:</strong> {{ launch().destination }}</p>
-        @if(!nullDate()){
         <p><strong>Date:</strong> {{ launch().date | date : 'medium' }}</p>
-        }
         <p>
           <strong>Price per seat:</strong>
           {{ launch().pricePerSeat | currency }}
@@ -51,15 +50,14 @@ export default class LaunchDetailsPage {
     () => 'launch-details for: ' + this.id()
   );
 
-  protected readonly launch: Signal<LaunchDto> = computed(() =>
-    this.launchesService.loadLaunchById(this.id())
+  protected readonly launch: Signal<LaunchDto> = computed(
+    () => this.launchResource.value() || NULL_LAUNCH
   );
 
-  protected readonly nullDate: Signal<boolean> = computed(
-    () =>
-      this.launch().date.toDateString() ===
-      new Date(1, 1, 1, 0, 0, 0, 0).toDateString()
-  );
+  private readonly launchResource = rxResource({
+    request: () => this.id(),
+    loader: (param) => this.launchesService.loadLaunchesById$(param.request),
+  });
 
   protected readonly rocket: Signal<RocketDto> = computed(() => {
     const rocketId = this.launch().rocketId;

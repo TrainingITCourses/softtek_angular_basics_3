@@ -1,6 +1,20 @@
 <article>
   <lab-page-header [title]="title" subtitle="Choose your journey" />
+  @if(status() === 'Resolved'){
   <main>
-    <lab-launches-list [launches]="launches" />
+    <lab-launches-list [launches]="launches()" />
   </main>
+  } @else{
+  <footer>
+    @if(status() === 'Loading'){
+    <pre>
+      Loading...
+    </pre>
+    } @else{
+    <pre>
+      {{ error()}}
+    </pre>
+    }
+  </footer>
+  }
 </article>
