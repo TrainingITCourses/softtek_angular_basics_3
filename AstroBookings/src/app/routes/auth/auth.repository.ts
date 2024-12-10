@@ -14,16 +14,16 @@ import { Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class AuthRepository {
   private readonly httpClient: HttpClient = inject(HttpClient);
   private apiUrl = 'http://localhost:3000/api';
 
-  login$(loginDto: LoginDto): Observable<UserTokenDto> {
+  postLogin$(loginDto: LoginDto): Observable<UserTokenDto> {
     if (loginDto === NULL_LOGIN_DTO) return of(NULL_USER_TOKEN);
     return this.httpClient.post<UserTokenDto>(`${this.apiUrl}/login`, loginDto);
   }
 
-  register$(registerDto: RegisterDto): Observable<UserTokenDto> {
+  postRegister$(registerDto: RegisterDto): Observable<UserTokenDto> {
     if (registerDto === NULL_REGISTER_DTO) return of(NULL_USER_TOKEN);
     return this.httpClient.post<UserTokenDto>(
       `${this.apiUrl}/register`,

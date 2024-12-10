@@ -6,7 +6,7 @@ import {
   RegisterDto,
 } from '@app/shared/models/register.dto';
 import { PageHeaderComponent } from '@app/shared/ui/page-header.component';
-import { AuthService } from './auth.service';
+import { AuthRepository } from './auth.repository';
 import { RegisterForm } from './register.form';
 
 @Component({
@@ -27,11 +27,11 @@ import { RegisterForm } from './register.form';
   `,
 })
 export default class RegisterPage {
-  private readonly authService = inject(AuthService);
+  private readonly authService = inject(AuthRepository);
   private registerDto: RegisterDto = NULL_REGISTER_DTO;
 
   private readonly registerResource = rxResource({
-    loader: () => this.authService.register$(this.registerDto),
+    loader: () => this.authService.postRegister$(this.registerDto),
   });
 
   protected register(registerDto: RegisterDto) {
