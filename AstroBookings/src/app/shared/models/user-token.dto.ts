@@ -7,12 +7,13 @@ export type UserTokenDto = {
     email: string;
   };
   accessToken: string;
-}
+  refreshToken?: string;
+};
 
 /**
  * The null user token
  */
-export const NULL_USER_TOKEN: UserTokenDto = { 
-  user: { id: '', email: '' }, accessToken: '' };
-
-
+export const NULL_USER_TOKEN: UserTokenDto = {
+  user: { id: '', email: '' },
+  accessToken: '',
+};
