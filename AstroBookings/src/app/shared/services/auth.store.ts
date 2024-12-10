@@ -1,5 +1,6 @@
 import {
   computed,
+  effect,
   Injectable,
   Signal,
   signal,
@@ -21,6 +22,23 @@ export class AuthStore {
   public readonly selectIsAuthenticated: Signal<boolean> = computed(
     () => this.selectToken() !== ''
   );
+
+  private readonly localStoreEffect = effect(() => {
+    const userToken = this.authState(); // trigger
+    // effect
+    if (userToken === NULL_USER_TOKEN) {
+      localStorage.removeItem('userToken');
+    } else {
+      localStorage.setItem('userToken', JSON.stringify(userToken));
+    }
+  });
+
+  constructor() {
+    const localUserToken = localStorage.getItem('userToken');
+    if (!localUserToken) return;
+    const userToken = JSON.parse(localUserToken);
+    this.authState.set(userToken);
+  }
 
   public dispatchLogin(userToken: UserTokenDto) {
     this.authState.set(userToken);

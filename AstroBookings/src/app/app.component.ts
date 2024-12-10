@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { HeaderWidget } from '@app/core/layout/header/header.widget';
 import { FooterComponent } from '@layout/footer/footer.component';
-import { HeaderComponent } from '@layout/header/header.component';
 
 @Component({
   selector: 'lab-root',
-  imports: [RouterOutlet, HeaderComponent, FooterComponent],
+  imports: [RouterOutlet, HeaderWidget, FooterComponent],
   template: `
     <lab-header [title]="title" />
     <router-outlet />
