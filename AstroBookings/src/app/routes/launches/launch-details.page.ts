@@ -6,18 +6,22 @@ import {
   inject,
   input,
   InputSignal,
+  signal,
   Signal,
+  WritableSignal,
 } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { LaunchDto, NULL_LAUNCH } from '@app/shared/models/launch.dto';
 import { NULL_ROCKET, RocketDto } from '@app/shared/models/rocket.dto';
+import { AuthStore } from '@app/shared/services/auth.store';
 import { LaunchesService } from '@app/shared/services/launches.service';
 import { RocketsService } from '@app/shared/services/rockets.service';
 import { PageHeaderComponent } from '@app/shared/ui/page-header.component';
+import { BookSeatsForm } from './book-seats.form';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [DatePipe, CurrencyPipe, PageHeaderComponent],
+  imports: [DatePipe, CurrencyPipe, PageHeaderComponent, BookSeatsForm],
   template: `
     <article>
       <lab-page-header [title]="title()" [subtitle]="subtitle()" />
@@ -33,12 +37,21 @@ import { PageHeaderComponent } from '@app/shared/ui/page-header.component';
           {{ launch().pricePerSeat | currency }}
         </p>
       </main>
+      @defer( when isAuthenticated()){
+      <lab-book-seats-form
+        [launch]="launch()"
+        [rocket]="rocket()"
+        [(seats)]="bookSeats"
+        (bookNow)="sendBooking()"
+      />
+      }
     </article>
   `,
 })
 export default class LaunchDetailsPage {
   private readonly launchesService: LaunchesService = inject(LaunchesService);
   private readonly rocketsService: RocketsService = inject(RocketsService);
+  private readonly authStore: AuthStore = inject(AuthStore);
 
   public readonly id: InputSignal<string> = input.required<string>();
 
@@ -59,8 +72,22 @@ export default class LaunchDetailsPage {
     loader: (param) => this.launchesService.loadLaunchesById$(param.request),
   });
 
-  protected readonly rocket: Signal<RocketDto> = computed(() => {
-    const rocketId = this.launch().rocketId;
-    return this.rocketsService.loadRocketById(rocketId) || NULL_ROCKET;
+  protected readonly rocketResource = rxResource({
+    request: () => this.launch().rocketId,
+    loader: (param) =>
+      this.rocketsService.loadRocketById$(param.request) || NULL_ROCKET,
   });
+
+  protected readonly rocket: Signal<RocketDto> = computed(
+    () => this.rocketResource.value() || NULL_ROCKET
+  );
+
+  protected readonly isAuthenticated: Signal<boolean> =
+    this.authStore.selectIsAuthenticated;
+
+  protected readonly bookSeats: WritableSignal<number> = signal<number>(0);
+
+  protected sendBooking() {
+    console.log('Booking seats:', this.bookSeats());
+  }
 }

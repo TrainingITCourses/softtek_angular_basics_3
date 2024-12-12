@@ -1,12 +1,17 @@
-import { Injectable } from '@angular/core';
-import { ROCKETS } from '../data/rockets.data';
-import { NULL_ROCKET, RocketDto } from '../models/rocket.dto';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { RocketDto } from '../models/rocket.dto';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RocketsService {
-  loadRocketById(id: string): RocketDto {
-    return ROCKETS.find((rocket) => rocket.id === id) || NULL_ROCKET;
+  private httpClient = inject(HttpClient);
+  private apiUrl = 'http://localhost:3000/api';
+  private rocketsUrl = `${this.apiUrl}/rockets`;
+
+  loadRocketById$(id: string): Observable<RocketDto> {
+    return this.httpClient.get<RocketDto>(`${this.rocketsUrl}/${id}`);
   }
 }
