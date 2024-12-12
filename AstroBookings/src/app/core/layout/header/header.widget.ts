@@ -15,6 +15,7 @@ import { AuthStore } from '@app/shared/services/auth.store';
         <ul>
           <li><a routerLink="/">🏠 Home</a></li>
           <li><a routerLink="/about">ℹ️ About</a></li>
+          <li><a routerLink="/rockets">🚀 Rockets</a></li>
           @if(isAuthenticated()){
           <li><a routerLink="/">🎟️ My Bookings</a></li>
           <li (click)="logout()">👤 Log out</li>

@@ -11,6 +11,10 @@ export class RocketsService {
   private apiUrl = 'http://localhost:3000/api';
   private rocketsUrl = `${this.apiUrl}/rockets`;
 
+  loadRockets$(): Observable<RocketDto[]> {
+    return this.httpClient.get<RocketDto[]>(this.rocketsUrl);
+  }
+
   loadRocketById$(id: string): Observable<RocketDto> {
     return this.httpClient.get<RocketDto>(`${this.rocketsUrl}/${id}`);
   }

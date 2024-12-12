@@ -12,6 +12,10 @@ export const routes: Routes = [
     loadComponent: () => import('./routes/about/about.page'),
   },
   {
+    path: 'rockets',
+    loadComponent: () => import('./routes/rockets/rockets.page'),
+  },
+  {
     path: 'auth/login',
     loadComponent: () => import('./routes/auth/login.page'),
   },
