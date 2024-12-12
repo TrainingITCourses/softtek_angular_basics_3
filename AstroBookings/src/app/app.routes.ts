@@ -20,7 +20,7 @@ export const routes: Routes = [
     loadComponent: () => import('./routes/auth/register.page'),
   },
   {
-    path: 'launches/:id',
+    path: 'launches/:launch_id',
     loadComponent: () => import('./routes/launches/launch-details.page'),
   },
 ];

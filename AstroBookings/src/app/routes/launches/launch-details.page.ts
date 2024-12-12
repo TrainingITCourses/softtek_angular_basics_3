@@ -53,14 +53,14 @@ export default class LaunchDetailsPage {
   private readonly rocketsService: RocketsService = inject(RocketsService);
   private readonly authStore: AuthStore = inject(AuthStore);
 
-  public readonly id: InputSignal<string> = input.required<string>();
+  public readonly launch_id: InputSignal<string> = input.required<string>();
 
   protected readonly title: Signal<string> = computed(
     () => '🚀 ' + this.launch().mission
   );
 
   protected readonly subtitle: Signal<string> = computed(
-    () => 'launch-details for: ' + this.id()
+    () => 'launch-details for: ' + this.launch_id()
   );
 
   protected readonly launch: Signal<LaunchDto> = computed(
@@ -68,14 +68,13 @@ export default class LaunchDetailsPage {
   );
 
   private readonly launchResource = rxResource({
-    request: () => this.id(),
+    request: () => this.launch_id(),
     loader: (param) => this.launchesService.loadLaunchesById$(param.request),
   });
 
   protected readonly rocketResource = rxResource({
     request: () => this.launch().rocketId,
-    loader: (param) =>
-      this.rocketsService.loadRocketById$(param.request) || NULL_ROCKET,
+    loader: (param) => this.rocketsService.loadRocketById$(param.request),
   });
 
   protected readonly rocket: Signal<RocketDto> = computed(
