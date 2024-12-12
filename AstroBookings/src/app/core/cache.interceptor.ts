@@ -6,15 +6,14 @@ const cache = new Map<string, HttpResponse<any>>();
 export const cacheInterceptor: HttpInterceptorFn = (req, next) => {
   if (req.method !== 'GET') return next(req);
 
-  const response: HttpResponse<any> | undefined = cache.get(req.url);
-  if (response) {
-    return of(response);
-  }
+  const cachedResponse: HttpResponse<any> | undefined = cache.get(req.url);
+  if (cachedResponse) return of(cachedResponse);
 
   return next(req).pipe(
     tap((event) => {
       if (event instanceof HttpResponse) {
-        cache.set(req.url, event);
+        const response = event;
+        cache.set(req.url, response);
       }
     })
   );
